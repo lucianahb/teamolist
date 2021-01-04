@@ -8,4 +8,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route('/')
 def index():
-    return render_template('base.html', titulo='Marketplace Olist')
+    return render_template('index.html', titulo='Marketplace Olist')
+
+
+app.run()
