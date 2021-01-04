@@ -1,0 +1,6 @@
+extra,supermercados;
+ponto frio,loja de departamentos;
+boticário,loja de perfumes;
+extra,supermercados;
+ponto frio,loja de departamentos;
+boticário,loja de perfumes;
