@@ -1,10 +1,14 @@
 {%extends 'base.html'%}
 
 {%block body%}
+<form action="/cadastro" >
 <div>
     <h3>Cadastrar</h3>
-    <a href="/marketplace">Marketplace</a>
+    <button name="opcao" value="marketplace" type="submit">Marketplace</button>
     <br />
-    <a href="/produto">Produto</a>
+    <button name="opcao" value="produto">Produto</button>
+
 </div>
+
+</form>
 {%endblock%}

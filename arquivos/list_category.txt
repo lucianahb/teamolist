@@ -1,2 +1,3 @@
 perfume,feminino,14.50;
 celular,mobiliade,1450.50;
+Smartphone,Preto,1236;

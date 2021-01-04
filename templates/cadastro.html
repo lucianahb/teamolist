@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+
+{%block body%}
+<h2> {{titulo}} </h2>
+<form action="/gravar" >
+
+    <labe>Nome</labe> <input type="text" name="nome">
+    <labe>Descrição</labe> <input type="text" name="descricao">
+
+    {%if op =='produto' %}
+
+    <labe>Preço</labe> <input type="number" name="preco">
+
+    {%endif%}
+    <button type="submit">Salvar</button>
+</form>
+
+{%endblock%}
