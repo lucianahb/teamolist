@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from funcoes import escrever_arquivo
+from backend.funcoes import escrever_arquivo
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
