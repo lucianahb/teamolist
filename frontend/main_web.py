@@ -1,5 +1,8 @@
+import sys
+sys.path.append('.')
 from flask import Flask, render_template, request
 from backend.funcoes import escrever_arquivo
+
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -27,7 +30,6 @@ def gravar_dados():
     nome = request.args.get('nome')
     desc = request.args.get('descricao')
     preco = request.args.get('preco')
-
 
     if preco is None:
         dado = f'{nome},{desc}'
