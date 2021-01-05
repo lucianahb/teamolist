@@ -1,7 +1,7 @@
+from flask import Flask, render_template, request
 import sys
 sys.path.append('.')
-from flask import Flask, render_template, request
-from backend.funcoes import escrever_arquivo
+from backend.funcoes import escrever_arquivo, log
 
 
 app = Flask(__name__)
@@ -30,15 +30,19 @@ def gravar_dados():
     nome = request.args.get('nome')
     desc = request.args.get('descricao')
     preco = request.args.get('preco')
-
+    desc = str(desc).replace('*', '-').replace('%', '-')
+    nome = str(nome).replace('*', '-').replace('%', '-')
+    
     if preco is None:
-        dado = f'{nome},{desc}'
+        dado = f'{nome}*{desc}'
         escrever_arquivo(dado, 0, 'a')
+        log('gravar_marketplace')
     else:
-        dado = f'{nome},{desc},{preco}'
+        dado = f'{nome}*{desc}*{preco}'
         escrever_arquivo(dado, 1, 'a')
-
+        log('gravar_produto')
     return render_template('index.html', titulo='Marketplace Olist')
 
 
+app.debug = True
 app.run()
