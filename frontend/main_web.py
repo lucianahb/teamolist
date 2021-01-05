@@ -44,5 +44,6 @@ def gravar_dados():
     return render_template('index.html', titulo='Marketplace Olist')
 
 
-app.debug = True
+#app.debug = True
+
 app.run()
