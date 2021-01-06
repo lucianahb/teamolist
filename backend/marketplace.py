@@ -11,8 +11,13 @@ def save_mkp(data:str):
         file_mkp.close()
 
 
-def list_all():
-    pass
-    #root = 'backend/files/'
-
+def list_mkplaces():
+    list_mkp = []
+    root = 'backend/files/'
+    full_path = f'{root}list_marketplace.txt'
+    file_mkp = open(full_path, 'r')
+    for f in  file_mkp:
+        mkp = f.strip().split(';')
+        list_mkp.append(mkp)
+    return list_mkp
 

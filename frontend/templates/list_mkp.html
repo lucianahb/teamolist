@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1>Lista de Marketplaces</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for mkp in list%}
+        <tr>
+            <td>{{mkp[0]}}</td>
+            <td>{{mkp[1]}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+<a href="/">Home</a>
+
+
+{% endblock %}

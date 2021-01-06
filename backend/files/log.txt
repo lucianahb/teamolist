@@ -1,12 +1,2 @@
-05/01/2021 √†s 09:35:55 => Acesso a fun√ß√£o gravar_produto
-05/01/2021 ‡s 10:00:36 => Acesso a funÁ„o gravar_marketplace
-05/01/2021 ‡s 10:53:02 => Acesso a funÁ„o gravar_marketplace
-05/01/2021 ‡s 10:53:05 => Acesso a funÁ„o gravar_produto
-05/01/2021 ‡s 10:53:10 => Acesso a funÁ„o gravar_produto
-05/01/2021 ‡s 10:53:12 => Acesso a funÁ„o gravar_marketplace
-06/01/2021 √†s 12:00:47 => Acesso a fun√ß√£o save_mkp
-06/01/2021 √†s 15:35:42 => Acesso a fun√ß√£o save_mkp
-06/01/2021 √†s 16:34:38 => Acesso a fun√ß√£o save_mkp
-06/01/2021 √†s 17:59:39 => Acesso a fun√ß√£o save_mkp
-06/01/2021 √†s 18:02:50 => Acesso a fun√ß√£o save_mkp
-06/01/2021 √†s 18:02:59 => Acesso a fun√ß√£o save_product
+06/01/2021 √†s 18:37:36 => Acesso a fun√ß√£o save_mkp
+06/01/2021 √†s 18:37:43 => Acesso a fun√ß√£o save_product

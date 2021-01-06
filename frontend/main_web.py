@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 import sys
 sys.path.append('.')
 from backend.funcoes import write_file, log
+from backend.marketplace import list_mkplaces
+from backend.product import list_products
 
 # def create_app():
 app = Flask(__name__)
@@ -32,8 +34,6 @@ def gravar_dados():
     nome = request.args.get('nome')
     desc = request.args.get('descricao')
     preco = request.args.get('preco')
-    desc = str(desc).replace('*', '-').replace('%', '-')
-    nome = str(nome).replace('*', '-').replace('%', '-')
     
     if preco is None:
         data = f'{nome};{desc}'
@@ -43,6 +43,17 @@ def gravar_dados():
         write_file(1, data)
     return render_template('index.html', titulo='Marketplace Olist')
 
+
+@app.route('/list-mkp')
+def list_mkp():
+    final_list = list_mkplaces()
+    return render_template('list_mkp.html', list=final_list)
+
+
+@app.route('/list-product')
+def list_product():
+    final_list = list_products()
+    return render_template('list_product.html', list=final_list)
 
 app.debug = True
 

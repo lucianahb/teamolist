@@ -11,6 +11,13 @@ def save_product(data: str):
         file_product.close()
 
 
-def list_all():
-    pass
+def list_products():
+    list_prod = []
+    root = 'backend/files/'
+    full_path = f'{root}list_product.txt'
+    file_prod = open(full_path, 'r')
+    for f in  file_prod:
+        prod = f.strip().split(';')
+        list_prod.append(prod)
+    return list_prod
 
