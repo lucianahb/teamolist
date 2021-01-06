@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request
 import sys
 sys.path.append('.')
-from backend.funcoes import escrever_arquivo, log
+from backend.funcoes import write_file, log
 
-
+# def create_app():
 app = Flask(__name__)
+    # Bootstrap(app)
+    # return app
+    
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 
@@ -16,7 +19,6 @@ def index():
 @app.route('/cadastro')
 def view_cadastro():
     opcao = request.args.get('opcao')
-
     if opcao == 'marketplace':
         return render_template('cadastro.html', titulo='Marketplace', op=opcao)
     elif opcao == 'produto':
@@ -34,16 +36,14 @@ def gravar_dados():
     nome = str(nome).replace('*', '-').replace('%', '-')
     
     if preco is None:
-        dado = f'{nome}*{desc}'
-        escrever_arquivo(dado, 0, 'a')
-        log('gravar_marketplace')
+        data = f'{nome};{desc}'
+        write_file(0, data)
     else:
-        dado = f'{nome}*{desc}*{preco}'
-        escrever_arquivo(dado, 1, 'a')
-        log('gravar_produto')
+        data = f'{nome};{desc};{preco}'
+        write_file(1, data)
     return render_template('index.html', titulo='Marketplace Olist')
 
 
-#app.debug = True
+app.debug = True
 
 app.run()
