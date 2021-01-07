@@ -1,4 +1,4 @@
-def save_mkp(data:str):
+def save_mkplace(data:str):
     root = 'backend/files/'
     full_path = f'{root}list_marketplace.txt'
     try:
@@ -20,4 +20,3 @@ def list_mkplaces():
         mkp = f.strip().split(';')
         list_mkp.append(mkp)
     return list_mkp
-

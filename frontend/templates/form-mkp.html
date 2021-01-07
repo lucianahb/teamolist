@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+
+{%block body%}
+<h2> {{titulo}} </h2>
+<form action="/save-mkp">
+    <div class="label">
+        <label>Nome</label> <input type="text" name="nome"/>
+    </div>
+    </br></br>
+    <div class="label">
+        <label>Descrição</label> <input type="text" name="descricao">
+    </div>
+    </br></br></br>
+    <input type="submit" value="Salvar"/>
+</form>
+<a href='/'> Voltar</a>
+{%endblock%}

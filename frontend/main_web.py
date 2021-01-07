@@ -1,14 +1,12 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import sys
 sys.path.append('.')
-from backend.funcoes import write_file, log
-from backend.marketplace import list_mkplaces
-from backend.product import list_products
+from backend.log import save_log
+from backend.marketplace import list_mkplaces, save_mkplace
+from backend.product import list_products, save_product
 
-# def create_app():
 app = Flask(__name__)
-    # Bootstrap(app)
-    # return app
+
     
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
@@ -18,41 +16,48 @@ def index():
     return render_template('index.html', titulo='Marketplace Olist')
 
 
-@app.route('/cadastro')
-def view_cadastro():
-    opcao = request.args.get('opcao')
-    if opcao == 'marketplace':
-        return render_template('cadastro.html', titulo='Marketplace', op=opcao)
-    elif opcao == 'produto':
-        return render_template('cadastro.html', titulo='Produto', op=opcao)
-    else:
-        return render_template('index.html', titulo='Marketplace Olist')
+@app.route('/form-mkp')
+def form_mkp():
+    return render_template('form-mkp.html', titulo='Marketplace')
 
 
-@app.route('/gravar')
-def gravar_dados():
+@app.route('/form-product')
+def form_product():
+    return render_template('form-product.html', titulo='Produto')
+
+
+@app.route('/save-mkp')
+def save_mkp():
+    nome = request.args.get('nome')
+    desc = request.args.get('descricao')
+    data = f'{nome};{desc}'
+    save_mkplace(data)
+    save_log('Save Marketplace')
+    return redirect('/list-mkp')
+
+
+@app.route('/save-product')
+def save_prod():
     nome = request.args.get('nome')
     desc = request.args.get('descricao')
     preco = request.args.get('preco')
-    
-    if preco is None:
-        data = f'{nome};{desc}'
-        write_file(0, data)
-    else:
-        data = f'{nome};{desc};{preco}'
-        write_file(1, data)
-    return render_template('index.html', titulo='Marketplace Olist')
+    data = f'{nome};{desc};{preco}'
+    save_product(data)
+    save_log('Save Product')
+    return redirect('/list-product')
 
 
 @app.route('/list-mkp')
 def list_mkp():
     final_list = list_mkplaces()
+    save_log('Listed Marketplace')
     return render_template('list_mkp.html', list=final_list)
 
 
 @app.route('/list-product')
 def list_product():
     final_list = list_products()
+    save_log('Listed Product')
     return render_template('list_product.html', list=final_list)
 
 app.debug = True

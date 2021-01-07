@@ -20,4 +20,3 @@ def list_products():
         prod = f.strip().split(';')
         list_prod.append(prod)
     return list_prod
-
