@@ -23,17 +23,6 @@ h2 {
     text-transform: none;
 }
 
-button {
-    background: none;
-    border: 0;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 100%;
-    padding: 0;
-    text-decoration: none;
-}
-
 a {
     background: none;
     border: none;
@@ -41,7 +30,7 @@ a {
     text-decoration: none;
 }
 
-a:hover, button:hover {
+a:hover {
     text-decoration: underline;
 }
 
