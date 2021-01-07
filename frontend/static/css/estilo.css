@@ -9,12 +9,12 @@ body {
     background: #143AD1;
 }
 
-h2 {
+h1, h2 {
     font-family: "Arial Black", Gadget, sans-serif;
     font-size: 25px;
     letter-spacing: -0.8px;
     word-spacing: 0px;
-    color: #FFFFFF;
+    color: #68E4A0;
     font-weight: normal;
     padding: 2em 0;
     text-decoration: none;
@@ -38,4 +38,16 @@ label {
     font-family: "Arial", Gadget, sans-serif;
     font-size: 17px;
     color: #FFFFFF;
+}
+
+.div_container {
+    align-items: stretch;
+    display: flex;
+    justify-content: center;
+    margin: 0 30em;
+}
+
+table {
+    color: #FFFFFF;
+    margin-bottom: 2em;
 }

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1>Lista de Sellers</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for seller in list%}
+        <tr>
+            <td>{{seller[0]}}</td>
+            <td>{{seller[1]}}</td>
+            <td>{{seller[2]}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+<a href="/">Home</a>
+
+
+{% endblock %}
