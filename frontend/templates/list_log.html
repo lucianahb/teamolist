@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1>Lista de Logs</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for log in list%}
+            <tr>
+                <td>{{log[0]}}</td>
+                <td>{{log[1]}}</td>
+                <td>{{log[2]}}</td>
+            </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+<a href="/">Home</a>
+
+
+{% endblock %}

@@ -3,7 +3,7 @@ root = 'backend/files/list_product.txt'
 def save_product(data: str):
     try:
         file_product = open(root, 'a')
-        file_product.write(data+'\n') #'%\n'
+        file_product.write(data+'\n')
         return True
     except Exception as e:
         return False

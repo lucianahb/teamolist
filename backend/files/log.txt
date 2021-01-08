@@ -1,8 +1,4 @@
-06/01/2021 às 18:37:36 => Acesso a função save_mkp
-06/01/2021 às 18:37:43 => Acesso a função save_product
-07/01/2021 às 10:57:39 => Acesso a função save_mkp
-07/01/2021 às 11:15:17 => Acesso a função save_mkp
-07/01/2021 às 11:17:12 => Acesso a função save_product
-07/01/2021 às 11:17:35 => Acesso a função save_product
-07/01/2021 às 11:28:58 => Acesso a função Save Marketplace
-07/01/2021 às 11:29:06 => Acesso a função Save Product
+07/01/2021 | 20:45:23 | Saved Marketplace
+07/01/2021 | 20:45:23 | Listed Marketplace
+07/01/2021 | 20:45:32 | Saved Seller
+07/01/2021 | 20:45:32 | Listed Seller

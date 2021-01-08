@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+
+{%block body%}
+<h2> {{titulo}} </h2>
+<form action="/save-category">
+    <div class="label">
+        <label>Nome</label> 
+        <input type="text" name="nome"/>
+    </div>
+    </br></br></br>
+    <input type="submit" value="Salvar"/>
+</form>
+<a href='/'> Voltar</a>
+{%endblock%}
