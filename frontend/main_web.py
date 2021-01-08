@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 import sys
 sys.path.append('.')
-from backend.log import save_log
+from backend.log import save_log, list_logs
 from backend.marketplace import list_mkplaces, save_mkplace
 from backend.product import list_products, save_product
 from backend.seller import list_sellers, save_seller
@@ -105,6 +105,10 @@ def list_category():
     save_log('Listed Category')
     return render_template('list_category.html', list=final_list)
 
+@app.route('/list-log')
+def list_log():
+    final_list = list_logs()
+    return render_template('list_log.html', list=final_list)
 
 app.debug = True
 
