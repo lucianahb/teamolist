@@ -8,16 +8,28 @@
         <tr>
             <th>Data</th>
             <th>Hora</th>
-            <th>Descrição</th>
+            <th>Tipo</th>
+            <th>Operação</th>
         </tr>
     </thead>
     <tbody>
         {%for log in list%}
+            {% if log[2] == '1' %}
+                <tr>
+                    <td class="save_log">{{log[0]}}</td>
+                    <td class="save_log">{{log[1]}}</td>
+                    <td class="save_log">Save</td>
+                    <td class="save_log">{{log[3]}}</td>
+                </tr>
+            {% elif log[2] == '2' %}
             <tr>
-                <td>{{log[0]}}</td>
-                <td>{{log[1]}}</td>
-                <td>{{log[2]}}</td>
+                <td class="list_log">{{log[0]}}</td>
+                <td class="list_log">{{log[1]}}</td>
+                <td class="list_log">List</td>
+                <td class="list_log">{{log[3]}}</td>
             </tr>
+
+            {% endif %}
         {%endfor%}
     </tbody>
 </table>
