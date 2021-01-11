@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, redirect
 import sys
-sys.path.append('.')
-from backend.log import save_log, list_logs
-from backend.marketplace import list_mkplaces, save_mkplace
-from backend.product import list_products, save_product
-from backend.seller import list_sellers, save_seller
-from backend.category import list_categories, save_category
+sys.path.append('..')
+
+from backend.controller.log import write_log, list_logs # pylint: disable=import-error 
+from backend.controller.marketplace import list_mkplaces, write_mkplace # pylint: disable=import-error 
+from backend.controller.product import list_products, write_product # pylint: disable=import-error 
+from backend.controller.seller import list_sellers, write_seller # pylint: disable=import-error 
+from backend.controller.category import list_categories, write_category # pylint: disable=import-error 
 
 app = Flask(__name__)
 
@@ -38,81 +39,81 @@ def form_category():
     return render_template('form-category.html', titulo='Category')
 
 
-@app.route('/save-mkp')
-def save_mkp():
+@app.route('/write-mkp')
+def write_mkp():
     nome = request.args.get('nome')
     desc = request.args.get('descricao')
     data = f'{nome};{desc}'
-    save_mkplace(data)
-    operation_type = 1 #1=save and 2=list
-    save_log('Saved Marketplace', operation_type)
+    write_mkplace(data)
+    operation_type = 1 #1=write and 2=list
+    write_log('writen Marketplace', operation_type)
     return redirect('/list-mkp')
 
 
-@app.route('/save-product')
-def save_prod():
+@app.route('/write-product')
+def write_prod():
     nome = request.args.get('nome')
     desc = request.args.get('descricao')
     preco = request.args.get('preco')
     data = f'{nome};{desc};{preco}'
-    save_product(data)
-    operation_type = 1 #1=save and 2=list
-    save_log('Saved Product', operation_type)
+    write_product(data)
+    operation_type = 1 #1=write and 2=list
+    write_log('writen Product', operation_type)
     return redirect('/list-product')
 
 
-@app.route('/save-seller')
-def save_sel():
+@app.route('/write-seller')
+def write_sel():
     nome = request.args.get('nome')
     email = request.args.get('email')
     telefone = request.args.get('telefone')
     data = f'{nome};{email};{telefone}'
-    save_seller(data)
-    operation_type = 1 #1=save and 2=list
-    save_log('Saved Seller', operation_type)
+    write_seller(data)
+    operation_type = 1 #1=write and 2=list
+    write_log('writen Seller', operation_type)
     return redirect('/list-seller')
 
 
-@app.route('/save-category')
-def save_cat():
+@app.route('/write-category')
+def write_cat():
     nome = request.args.get('nome')
     data = f'{nome}'
-    save_category(data)
-    operation_type = 1 #1=save and 2=list
-    save_log('Saved Category', operation_type)
+    write_category(data)
+    operation_type = 1 #1=write and 2=list
+    write_log('writen Category', operation_type)
     return redirect('/list-category')
 
 
 @app.route('/list-mkp')
 def list_mkp():
     final_list = list_mkplaces()
-    operation_type = 2 #1=save and 2=list
-    save_log('Listed Marketplace', operation_type)
-    return render_template('list_mkp.html', list=final_list, save_log=save_log)
+    operation_type = 2 #1=write and 2=list
+    write_log('Listed Marketplace', operation_type)
+    return render_template('list_mkp.html', list=final_list, write_log=write_log)
 
 
 @app.route('/list-product')
 def list_product():
     final_list = list_products()
-    operation_type = 2 #1=save and 2=list
-    save_log('Listed Product', 2)
-    return render_template('list_product.html', list=final_list, save_log=save_log)
+    operation_type = 2 #1=write and 2=list
+    write_log('Listed Product', 2)
+    return render_template('list_product.html', list=final_list, write_log=write_log)
 
 
 @app.route('/list-seller')
 def list_seller():
     final_list = list_sellers()
-    operation_type = 2 #1=save and 2=list
-    save_log('Listed Seller', 2)
-    return render_template('list_seller.html', list=final_list, save_log=save_log)
+    operation_type = 2 #1=write and 2=list
+    write_log('Listed Seller', 2)
+    return render_template('list_seller.html', list=final_list, write_log=write_log)
 
 
 @app.route('/list-category')
 def list_category():
     final_list = list_categories()
-    operation_type = 2 #1=save and 2=list
-    save_log('Listed Category', operation_type)
-    return render_template('list_category.html', list=final_list, save_log=save_log)
+    operation_type = 2 #1=write and 2=list
+    write_log('Listed Category', operation_type)
+    return render_template('list_category.html', list=final_list, write_log=write_log)
 
 
 @app.route('/list-log')
