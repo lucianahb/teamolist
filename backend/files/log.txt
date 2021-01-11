@@ -1,4 +1,10 @@
-07/01/2021 | 20:45:23 | Saved Marketplace
-07/01/2021 | 20:45:23 | Listed Marketplace
-07/01/2021 | 20:45:32 | Saved Seller
-07/01/2021 | 20:45:32 | Listed Seller
+11/01/2021 | 10:41:40 | 1 | Saved Marketplace
+11/01/2021 | 10:41:40 | 2 | Listed Marketplace
+11/01/2021 | 10:44:10 | 1 | Saved Marketplace
+11/01/2021 | 10:44:10 | 2 | Listed Marketplace
+11/01/2021 | 10:46:22 | 1 | Saved Seller
+11/01/2021 | 10:46:22 | 2 | Listed Seller
+11/01/2021 | 10:46:26 | 2 | Listed Seller
+11/01/2021 | 10:46:31 | 1 | Saved Category
+11/01/2021 | 10:46:31 | 2 | Listed Category
+11/01/2021 | 10:46:35 | 2 | Listed Category

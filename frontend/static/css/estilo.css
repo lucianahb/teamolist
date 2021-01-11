@@ -51,3 +51,14 @@ table {
     color: #FFFFFF;
     margin-bottom: 2em;
 }
+
+.save_log {
+    background-color: #FFFFFF;
+    color: #143AD1;
+}
+
+.list_log {
+    background-color: #143AD1;
+    color: #FFFFFF;
+    border: 1px #000000 solid;
+}
