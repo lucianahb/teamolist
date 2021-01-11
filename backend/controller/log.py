@@ -19,10 +19,4 @@ def write_log(function_name: str, operation_type: str):
     
 
 def list_logs():
-    list_log = []
-    file_log = open(root, 'r')
-    for l in file_log:
-        log = l.strip().split('|')
-        log[2] = log[2].strip()
-        list_log.append(log)
-    return list_log
+    return list_logs()
