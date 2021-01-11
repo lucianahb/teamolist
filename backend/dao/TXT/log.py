@@ -4,15 +4,17 @@ sys.path.append('.')
 
 root = 'backend/files/log.txt'
 
-def save_log(function_name: str, operation_type: str):
-    files = open(root, 'a')
-    data = datetime.datetime.now()
-    files.write(data.strftime(
-        f"%d/%m/%Y | %H:%M:%S | {operation_type} | {function_name}\n"))
-    files.close()
+def create_log(data: str):
+    try:
+        with open(root, 'a') as file:
+            file.write(data+'\n')
+        return True
+    except Exception as e:
+        print(e)
+        return False
 
 
-def list_logs():
+def read_logs():
     list_log = []
     file_log = open(root, 'r')
     for l in file_log:

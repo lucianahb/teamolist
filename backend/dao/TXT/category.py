@@ -1,4 +1,4 @@
-root = '../backend/files/list_category.txt'
+root = 'backend/files/list_category.txt'
 
 def create_category(data:str):
     try:

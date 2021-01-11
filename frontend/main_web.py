@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import sys
-sys.path.append('..')
+sys.path.append('.')
 
 from backend.controller.log import write_log, list_logs # pylint: disable=import-error 
 from backend.controller.marketplace import list_mkplaces, write_mkplace # pylint: disable=import-error 
@@ -52,11 +52,9 @@ def write_mkp():
 
 @app.route('/write-product')
 def write_prod():
-    nome = request.args.get('nome')
-    desc = request.args.get('descricao')
-    preco = request.args.get('preco')
-    data = f'{nome};{desc};{preco}'
-    write_product(data)
+    data = []
+    data.append([request.args.get('nome'),request.args.get('descricao'),request.args.get('preco')])
+    write_product(data[0])
     operation_type = 1 #1=write and 2=list
     write_log('writen Product', operation_type)
     return redirect('/list-product')
@@ -64,11 +62,9 @@ def write_prod():
 
 @app.route('/write-seller')
 def write_sel():
-    nome = request.args.get('nome')
-    email = request.args.get('email')
-    telefone = request.args.get('telefone')
-    data = f'{nome};{email};{telefone}'
-    write_seller(data)
+    data = []
+    data.append([request.args.get('nome'),request.args.get('email'),request.args.get('telefone')])
+    write_seller(data[0])
     operation_type = 1 #1=write and 2=list
     write_log('writen Seller', operation_type)
     return redirect('/list-seller')
@@ -96,7 +92,7 @@ def list_mkp():
 def list_product():
     final_list = list_products()
     operation_type = 2 #1=write and 2=list
-    write_log('Listed Product', 2)
+    write_log('Listed Product', operation_type)
     return render_template('list_product.html', list=final_list, write_log=write_log)
 
 
@@ -104,7 +100,7 @@ def list_product():
 def list_seller():
     final_list = list_sellers()
     operation_type = 2 #1=write and 2=list
-    write_log('Listed Seller', 2)
+    write_log('Listed Seller', operation_type)
     return render_template('list_seller.html', list=final_list, write_log=write_log)
 
 
