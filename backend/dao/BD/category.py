@@ -1,17 +1,13 @@
 from backend.models.category import Category
+from backend.dao.BD.bd_config import generate_connection_string
 root = '../../backend/files/list_category.txt'
 
 
 import psycopg2
-host = "pgsql08-farm15.uni5.net"
-user = "topskills1"
-password = "olist21"
-database = "topskills1"
-connection_string = f"host={host} dbname={database} user={user} password={password}"
 
 def create_category(category: Category)->None:
     try:
-        conn = psycopg2.connect(connection_string)
+        conn = psycopg2.connect(generate_connection_string())
         print(category.name)
         with conn.cursor() as cur:
             cur.execute(f'''
@@ -29,7 +25,7 @@ def create_category(category: Category)->None:
 
 def read_categories()->list:
     try:
-        conn = psycopg2.connect(connection_string)
+        conn = psycopg2.connect(generate_connection_string())
         
         with conn.cursor() as cur:
             
