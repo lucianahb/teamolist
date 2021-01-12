@@ -9,6 +9,7 @@ def write_seller(seller:Seller) -> None:
     write_log('writen Seller', operation_type)
 
 def list_sellers() -> list:
+    sellers = read_sellers()
     operation_type = 2 #1=write and 2=list
     write_log('Listed Seller', operation_type)
-    return read_sellers()
+    return sellers

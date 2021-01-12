@@ -91,8 +91,6 @@ def list_mkp():
 @app.route('/list-product')
 def list_product():
     final_list = list_products()
-    operation_type = 2 #1=write and 2=list
-    write_log('Listed Product', operation_type)
     return render_template('list_product.html', list=final_list, write_log=write_log)
 
 
