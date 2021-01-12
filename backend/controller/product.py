@@ -11,6 +11,6 @@ def write_product(product: Product):
 
 def list_products():
     products = read_products()
-    operation_type = 1 #1=write and 2=list
+    operation_type = 2 #1=write and 2=list
     write_log('writen Product', operation_type)
     return products
