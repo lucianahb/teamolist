@@ -7,12 +7,14 @@
     <thead>
         <tr>
             <th>Nome da Categoria</th>
+            <th>Descrição da categoria</th>
         </tr>
     </thead>
     <tbody>
         {%for cat in list%}
         <tr>
-            <td>{{cat[1]}}</td>
+            <td>{{cat.name}}</td>
+            <td>{{cat.description}}</td>
         </tr>
         {%endfor%}
     </tbody>

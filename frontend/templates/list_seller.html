@@ -14,9 +14,9 @@
     <tbody>
         {%for seller in list%}
         <tr>
-            <td>{{seller[0]}}</td>
-            <td>{{seller[1]}}</td>
-            <td>{{seller[2]}}</td>
+            <td>{{seller.name}}</td>
+            <td>{{seller.email}}</td>
+            <td>{{seller.phone}}</td>
         </tr>
         {%endfor%}
     </tbody>
