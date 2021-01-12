@@ -1,0 +1,6 @@
+05/01/2021 Ã s 09:35:55 => Acesso a funÃ§Ã£o gravar_produto
+05/01/2021 às 10:00:36 => Acesso a função gravar_marketplace
+05/01/2021 às 10:53:02 => Acesso a função gravar_marketplace
+05/01/2021 às 10:53:05 => Acesso a função gravar_produto
+05/01/2021 às 10:53:10 => Acesso a função gravar_produto
+05/01/2021 às 10:53:12 => Acesso a função gravar_marketplace
