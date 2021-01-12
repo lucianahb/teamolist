@@ -35,7 +35,6 @@ def read_mkplaces()->list:
             cur.execute('select * from markeplace')
             
             result = cur.fetchall()
-            print("result" + str(result))
             return result
     except Exception as e:
         print(e)

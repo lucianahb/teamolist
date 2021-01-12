@@ -11,13 +11,16 @@ password = "olist21"
 database = "topskills1"
 connection_string = f"host={host} dbname={database} user={user} password={password}"
 
-def create_log(data: str):
+def create_log(function_name: str, operation_type: str):
+    date = datetime.datetime.now()
+    date = date.strftime("%d/%m/%Y | %H:%M:%S")
+    
     try:
         conn = psycopg2.connect(connection_string)
         
         with conn.cursor() as cur:
             cur.execute(f'''
-            INSERT INTO log (name, description) VALUES ('{name}', '{description}');
+            INSERT INTO log (date, operation, action) VALUES ('{date}', '{operation_type}', '{function_name}');
             ''')
 
         conn.commit()
@@ -31,10 +34,16 @@ def create_log(data: str):
 
 
 def read_logs():
-    list_log = []
-    file_log = open(root, 'r')
-    for l in file_log:
-        log = l.strip().split('|')
-        log[2] = log[2].strip()
-        list_log.append(log)
-    return list_log
+    try:
+        conn = psycopg2.connect(connection_string)
+        
+        with conn.cursor() as cur:
+            cur.execute('select * from log')
+            
+            result = cur.fetchall()
+            return result
+    except Exception as e:
+        print(e)
+
+    finally:
+        conn.close()
