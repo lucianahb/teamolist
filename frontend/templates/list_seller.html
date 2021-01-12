@@ -6,6 +6,7 @@
 <table>
     <thead>
         <tr>
+            <th>ID</th>
             <th>Nome</th>
             <th>E-mail</th>
             <th>Telefone</th>
@@ -14,6 +15,7 @@
     <tbody>
         {%for seller in list%}
         <tr>
+            <td>{{seller.id}}</td>
             <td>{{seller.name}}</td>
             <td>{{seller.email}}</td>
             <td>{{seller.phone}}</td>
