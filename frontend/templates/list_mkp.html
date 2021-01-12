@@ -6,6 +6,7 @@
 <table>
     <thead>
         <tr>
+            <th>ID</th>
             <th>Nome</th>
             <th>Descrição</th>
         </tr>
@@ -13,8 +14,9 @@
     <tbody>
         {%for mkp in list%}
         <tr>
-            <td>{{mkp[0]}}</td>
-            <td>{{mkp[1]}}</td>
+            <td>{{mkp.id}}</td>
+            <td>{{mkp.name}}</td>
+            <td>{{mkp.description}}</td>
         </tr>
         {%endfor%}
     </tbody>

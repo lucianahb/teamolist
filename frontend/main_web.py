@@ -7,6 +7,8 @@ from backend.controller.marketplace import list_mkplaces, write_mkplace # pylint
 from backend.controller.product import list_products, write_product # pylint: disable=import-error 
 from backend.controller.seller import list_sellers, write_seller # pylint: disable=import-error 
 from backend.controller.category import list_categories, write_category # pylint: disable=import-error 
+from backend.models.product import Product
+from backend.models.marketplace import Marketplace
 
 app = Flask(__name__)
 
@@ -44,7 +46,7 @@ def write_mkp():
     name = request.args.get('nome')
     description = request.args.get('descricao')
     
-    write_mkplace(name, description)
+    write_mkplace(Marketplace(name, description))
     operation_type = 1 #1=write and 2=list
     write_log('writen Marketplace', operation_type)
     return redirect('/list-mkp')
@@ -52,9 +54,10 @@ def write_mkp():
 
 @app.route('/write-product')
 def write_prod():
-    data = []
-    data.append([request.args.get('nome'),request.args.get('descricao'),request.args.get('preco')])
-    write_product(data[0])
+    name = request.args.get('nome')
+    description = request.args.get('descricao')
+    price = request.args.get('preco')
+    write_product(Product(name, description, price))
     operation_type = 1 #1=write and 2=list
     write_log('writen Product', operation_type)
     return redirect('/list-product')

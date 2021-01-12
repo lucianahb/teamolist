@@ -1,10 +1,8 @@
-from backend.dao.BD.marketplace import create_mkplace, read_mkplaces # pylint: disable=import-error 
-#from backend.dao.TXT.marketplace import create_mkplace, read_mkplaces # pylint: disable=import-error 
+from backend.dao.BD.marketplace import create_mkplace, read_mkplaces
+from backend.models.marketplace import Marketplace
 
-root = '../backend/files/list_marketplace.txt'
-
-def write_mkplace(name:str, description:str):
-    create_mkplace(name, description)
+def write_mkplace(marketplace: Marketplace):
+    create_mkplace(marketplace)
 
 def list_mkplaces():
     return read_mkplaces()
