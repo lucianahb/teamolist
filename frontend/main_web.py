@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect
 import sys
 sys.path.append('.')
 
+from backend.models.category import Category
+from backend.models.seller import Seller
 from backend.controller.log import write_log, list_logs # pylint: disable=import-error 
 from backend.controller.marketplace import list_mkplaces, write_mkplace # pylint: disable=import-error 
 from backend.controller.product import list_products, write_product # pylint: disable=import-error 
@@ -62,20 +64,20 @@ def write_prod():
 
 @app.route('/write-seller')
 def write_sel():
-    data = []
-    data.append([request.args.get('nome'),request.args.get('email'),request.args.get('telefone')])
-    write_seller(data[0])
-    operation_type = 1 #1=write and 2=list
-    write_log('writen Seller', operation_type)
+    name = request.args.get('nome')
+    email = request.args.get('email')
+    telefone = request.args.get('telefone')
+    seller = Seller(name,telefone,email)
+    write_seller(seller)
     return redirect('/list-seller')
 
 
 @app.route('/write-category')
 def write_cat():
     name = request.args.get('nome')
-    write_category(name)
-    operation_type = 1 #1=write and 2=list
-    write_log('writen Category', operation_type)
+    description = request.args.get('nome')
+    category = Category(name,description)
+    write_category(category)
     return redirect('/list-category')
 
 
@@ -98,16 +100,14 @@ def list_product():
 @app.route('/list-seller')
 def list_seller():
     final_list = list_sellers()
-    operation_type = 2 #1=write and 2=list
-    write_log('Listed Seller', operation_type)
+    print('aaaaaaaaaaaaaaa')
+    print(final_list)
     return render_template('list_seller.html', list=final_list, write_log=write_log)
 
 
 @app.route('/list-category')
 def list_category():
     final_list = list_categories()
-    operation_type = 2 #1=write and 2=list
-    write_log('Listed Category', operation_type)
     return render_template('list_category.html', list=final_list, write_log=write_log)
 
 
