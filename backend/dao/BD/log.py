@@ -13,14 +13,13 @@ connection_string = f"host={host} dbname={database} user={user} password={passwo
 
 def create_log(function_name: str, operation_type: str):
     date = datetime.datetime.now()
-    date = date.strftime("%d/%m/%Y | %H:%M:%S")
     
     try:
         conn = psycopg2.connect(connection_string)
         
         with conn.cursor() as cur:
             cur.execute(f'''
-            INSERT INTO log (date, operation, action) VALUES ('{date}', '{operation_type}', '{function_name}');
+            INSERT INTO log (datetime, action) VALUES ('{date}', '{function_name}');
             ''')
 
         conn.commit()
@@ -41,6 +40,7 @@ def read_logs():
             cur.execute('select * from log')
             
             result = cur.fetchall()
+            print(result)
             return result
     except Exception as e:
         print(e)
