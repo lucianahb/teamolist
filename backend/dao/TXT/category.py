@@ -1,6 +1,7 @@
 root = 'backend/files/list_category.txt'
 
-def create_category(data:str):
+def create_category(name:str):
+    data = name
     try:
         file_category = open(root, 'a')
         file_category.write(data+'\n') 

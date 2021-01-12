@@ -36,4 +36,3 @@ def read_products():
     finally:
         cursor.close()
         conn.close()
-

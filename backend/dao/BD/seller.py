@@ -37,3 +37,4 @@ def read_sellers():
         cursor.close()
         conn.close()
 
+

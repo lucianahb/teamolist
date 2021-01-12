@@ -1,6 +1,7 @@
 root = 'backend/files/list_marketplace.txt'
 
-def create_mkplace(data:str):
+def create_mkplace(name:str, description:str):
+    data = f'{name};{description}'
     try:
         with open(root, 'a') as file:
             file.write(data+'\n')
