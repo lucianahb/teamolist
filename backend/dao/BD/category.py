@@ -33,7 +33,7 @@ def read_categories()->list:
             list_categories = []
             result = cur.fetchall()
             for category in result:
-                cat = Category(category[1],category[2])
+                cat = Category(category[1],category[2],category[0])
                 list_categories.append(cat)
             return list_categories
     except Exception as e:

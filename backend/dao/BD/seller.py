@@ -26,7 +26,7 @@ def read_sellers():
         result = cursor.fetchall()
         lista_sellers = []
         for seller in result:
-            sell = Seller(seller[1], seller[3], seller[2])
+            sell = Seller(seller[1], seller[3], seller[2],seller[0])
             lista_sellers.append(sell)
         return lista_sellers
 
