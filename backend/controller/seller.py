@@ -2,7 +2,6 @@
 from backend.dao.BD.seller import create_seller, read_sellers
 from backend.controller.log import write_log
 from backend.models.seller import Seller
-root = 'backend/files/list_seller.txt'
 
 def write_seller(seller:Seller) -> None:
     create_seller(seller)

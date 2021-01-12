@@ -1,4 +1,3 @@
-root = '../backend/files/list_category.txt'
 from backend.dao.BD.category import create_category, read_categories # pylint: disable=import-error 
 from backend.controller.log import write_log
 from backend.models.category import Category
