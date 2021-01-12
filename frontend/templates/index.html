@@ -2,32 +2,11 @@
 
 {%block body%}
 <form action="/cadastro">
-    <h2>Marketplace</h2>
     <div class="div_container">
-        <div class="div_1">
-            <a href="/form-mkp">Criar Marketplace</a>
-            <br/><br/>
-            <a href="/form-product">Criar Produto</a>
-            <br/><br/>
-            <a href="/form-seller">Criar Seller</a>
-            <br/><br/>
-            <a href="/form-category">Criar Categoria</a>
-            <br/><br/>
-        </div>
-        <div class="div_2">
-            <a href="/list-mkp">Lista de Marketplaces</a>
-            <br/><br/>
-            <a href="/list-product">Lista de Produtos</a>
-            <br/><br/>
-            <a href="/list-seller">Lista de Sellers</a>
-            <br/><br/>
-            <a href="/list-category">Lista de Categorias</a>
-            <br/><br/>
-        </div>
+        <h2>Cadastrar</h2>
+        <button class="btn_primary" name="opcao" value="marketplace" type="submit">Marketplace</button>
         <br/><br/>
-        <div class="div_3">
-            <a href="/list-log">Listar Log</a>
-        </div>
+        <button class="btn_primary" name="opcao" value="produto">Produto</button>
     </div>
 </form>
 {%endblock%}
