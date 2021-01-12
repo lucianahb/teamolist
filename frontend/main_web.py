@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect
 import sys
 sys.path.append('.')
 
-from backend.controller.log import write_log, list_logs # pylint: disable=import-error 
 from backend.controller.marketplace import list_mkplaces, write_mkplace # pylint: disable=import-error 
 from backend.controller.product import list_products, write_product # pylint: disable=import-error 
 from backend.controller.seller import list_sellers, write_seller # pylint: disable=import-error 
@@ -45,10 +44,7 @@ def form_category():
 def write_mkp():
     name = request.args.get('nome')
     description = request.args.get('descricao')
-    
     write_mkplace(Marketplace(name, description))
-    operation_type = 1 #1=write and 2=list
-    write_log('writen Marketplace', operation_type)
     return redirect('/list-mkp')
 
 
@@ -58,8 +54,6 @@ def write_prod():
     description = request.args.get('descricao')
     price = request.args.get('preco')
     write_product(Product(name, description, price))
-    operation_type = 1 #1=write and 2=list
-    write_log('writen Product', operation_type)
     return redirect('/list-product')
 
 
@@ -86,8 +80,7 @@ def write_cat():
 def list_mkp():
     final_list = list_mkplaces()
     operation_type = 2 #1=write and 2=list
-    write_log('Listed Marketplace', operation_type)
-    return render_template('list_mkp.html', list=final_list, write_log=write_log)
+    return render_template('list_mkp.html', list=final_list)
 
 
 @app.route('/list-product')
