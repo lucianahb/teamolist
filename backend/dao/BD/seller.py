@@ -1,19 +1,40 @@
-root = '../../backend/files/list_seller.txt'
+from backend.dao.BD.bd_config import generate_connection_string # pylint: disable=import-error 
+import psycopg2
 
-def create_seller(data:str):
+
+def create_seller(data: str):
     try:
-        with open(root, 'a') as file:
-            file.write(data+'\n')
-        return True
+        conn = psycopg2.connect(generate_connection_string())
+        cursor = conn.cursor()
+        query = f"insert into seller (fullname,email,phone) values('{data[0]}','{data[1]}',{data[2]})"
+        cursor.execute(query)
+        conn.commit()
     except Exception as e:
         print(e)
-        return False
-
+    finally:
+        cursor.close()
+        conn.close()
+    
 
 def read_sellers():
-    list_seller = []
-    file_seller = open(root, 'r')
-    for f in  file_seller:
-        seller = f.strip().split(';')
-        list_seller.append(seller)
-    return list_seller
+    try:
+        data = []
+        conn = psycopg2.connect(generate_connection_string())
+        cursor = conn.cursor()
+
+        cursor.execute('select * from seller')
+
+        product = cursor.fetchall()
+
+        for p in product:
+            data.append([p[1], p[2],p[3]])
+
+        return data
+
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+

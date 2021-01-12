@@ -4,10 +4,12 @@ sys.path.append('.')
 
 root = 'backend/files/log.txt'
 
+
 def create_log(function_name: str, operation_type: str):
     date = datetime.datetime.now()
     date = date.strftime("%d/%m/%Y | %H:%M:%S")
     data = f"{date} | {operation_type} | {function_name}\n"
+
     try:
         with open(root, 'a') as file:
             file.write(data+'\n')
