@@ -2,7 +2,7 @@ import datetime as datetime
 import sys
 sys.path.append('.')
 
-root = '..  /backend/files/log.txt'
+root = 'backend/files/log.txt'
 
 def create_log(data: str):
     try:

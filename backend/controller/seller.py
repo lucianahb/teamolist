@@ -1,4 +1,4 @@
-from backend.dao.seller import  create_seller, read_sellers  # pylint: disable=import-error 
+from backend.dao.TXT.seller import  create_seller, read_sellers  # pylint: disable=import-error 
 
 root = '../backend/files/list_seller.txt'
 

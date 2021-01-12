@@ -1,6 +1,6 @@
 import io
 
-root = '../backend/files/list_product.txt'
+root = 'backend/files/list_product.txt'
 
 def create_product(data: str):
     try:

@@ -1,4 +1,6 @@
-root = '../backend/files/list_seller.txt'
+import os
+print(os.listdir())
+root = 'backend/files/list_seller.txt'
 
 def create_seller(data:str):
     try:
