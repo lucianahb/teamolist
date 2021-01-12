@@ -1,11 +1,15 @@
-
 #from backend.dao.TXT.seller import  create_seller, read_sellers  # pylint: disable=import-error 
 from backend.dao.BD.seller import create_seller, read_sellers
-
+from backend.controller.log import write_log
+from backend.models.seller import Seller
 root = 'backend/files/list_seller.txt'
 
-def write_seller(data:str):
-    create_seller(data)
+def write_seller(seller:Seller) -> None:
+    create_seller(seller)
+    operation_type = 1 #1=write and 2=list
+    write_log('writen Seller', operation_type)
 
-def list_sellers():
+def list_sellers() -> list:
+    operation_type = 2 #1=write and 2=list
+    write_log('Listed Seller', operation_type)
     return read_sellers()
