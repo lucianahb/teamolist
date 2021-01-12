@@ -1,0 +1,17 @@
+11/01/2021 | 10:41:40 | 1 | Saved Marketplace
+11/01/2021 | 10:41:40 | 2 | Listed Marketplace
+11/01/2021 | 10:44:10 | 1 | Saved Marketplace
+11/01/2021 | 10:44:10 | 2 | Listed Marketplace
+11/01/2021 | 10:46:22 | 1 | Saved Seller
+11/01/2021 | 10:46:22 | 2 | Listed Seller
+11/01/2021 | 10:46:26 | 2 | Listed Seller
+11/01/2021 | 10:46:31 | 1 | Saved Category
+11/01/2021 | 10:46:31 | 2 | Listed Category
+11/01/2021 | 10:46:35 | 2 | Listed Category
+11/01/2021 | 12:17:51 | 1 | writen Seller
+11/01/2021 | 12:18:40 | 1 | writen Seller
+11/01/2021 | 12:18:40 | 2 | Listed Seller
+11/01/2021 | 12:18:44 | 2 | Listed Marketplace
+11/01/2021 | 12:18:47 | 2 | Listed Product
+11/01/2021 | 12:18:49 | 2 | Listed Seller
+11/01/2021 | 12:18:51 | 2 | Listed Category

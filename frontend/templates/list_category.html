@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1>Lista de Categorias</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome da Categoria</th>
+            <th>Descrição da categoria</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for cat in list%}
+        <tr>
+            <td>{{cat.id}}</td>
+            <td>{{cat.name}}</td>
+            <td>{{cat.description}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+<a href="/">Home</a>
+
+
+{% endblock %}
