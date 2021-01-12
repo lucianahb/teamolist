@@ -1,4 +1,4 @@
-from backend.dao.marketplace import create_mkplace, read_mkplaces # pylint: disable=import-error 
+from backend.dao.TXT.marketplace import create_mkplace, read_mkplaces # pylint: disable=import-error 
 
 root = 'backend/files/list_marketplace.txt'
 

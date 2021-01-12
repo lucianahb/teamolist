@@ -1,4 +1,4 @@
-root = '../backend/files/list_marketplace.txt'
+root = 'backend/files/list_marketplace.txt'
 
 def create_mkplace(data:str):
     try:

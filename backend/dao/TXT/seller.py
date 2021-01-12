@@ -1,9 +1,10 @@
-root = '../backend/files/list_seller.txt'
+root = 'backend/files/list_seller.txt'
 
 def create_seller(data:str):
     try:
         with open(root, 'a') as file:
-            file.write(data+'\n')
+            formated_data = f'{data[0]};{data[1]};{data[2]}'
+            file.write(formated_data+'\n')
         return True
     except Exception as e:
         print(e)
