@@ -6,5 +6,5 @@ password = 'olist21'
 database = 'topskills1'
 
 def generate_connection_string():
-    connectio_string = f"host={host} user={user} dbname={database} password={password}"
-    return connectio_string
+    connection_string = f"host={host} user={user} dbname={database} password={password}"
+    return connection_string

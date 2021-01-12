@@ -6,6 +6,7 @@
 <table>
     <thead>
         <tr>
+            <th>ID</th>
             <th>Nome</th>
             <th>Descrição</th>
             <th>Preço</th>
@@ -14,9 +15,10 @@
     <tbody>
         {%for prod in list%}
         <tr>
-            <td>{{prod[0]}}</td>
-            <td>{{prod[1]}}</td>
-            <td>{{prod[2]}}</td>
+            <td>{{prod.id}}</td>
+            <td>{{prod.name}}</td>
+            <td>{{prod.description}}</td>
+            <td>{{prod.price}}</td>
         </tr>
         {%endfor%}
     </tbody>

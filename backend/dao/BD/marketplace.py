@@ -1,41 +1,41 @@
 import psycopg2
+from backend.dao.BD.bd_config import generate_connection_string
+from backend.models.marketplace import Marketplace
 
-root = 'backend/files/list_marketplace.txt'
-host = "pgsql08-farm15.uni5.net"
-user = "topskills1"
-password = "olist21"
-database = "topskills1"
-connection_string = f"host={host} dbname={database} user={user} password={password}"
 
-def create_mkplace(name:str, description:str):
+def create_mkplace(marketplace: Marketplace):
     try:
-        conn = psycopg2.connect(connection_string)
-        
-        with conn.cursor() as cur:
-            cur.execute(f'''
-            INSERT INTO markeplace (name, description) VALUES ('{name}', '{description}');
-            ''')
-
+        conn = psycopg2.connect(generate_connection_string())
+        cursor = conn.cursor()
+        query = f"INSERT INTO marketplace (name, description) VALUES ('{marketplace.name}', '{marketplace.description}');"
+        cursor.execute(query)
         conn.commit()
+        
     except Exception as e:
         print("deu ruim")
         print(e)
 
     finally:
         pass
+        cursor.close()
         conn.close()
 
 
 
 def read_mkplaces()->list:
     try:
-        conn = psycopg2.connect(connection_string)
+        marketplaces = []
+        conn = psycopg2.connect(generate_connection_string())
+        cursor = conn.cursor()
+
+        cursor.execute('SELECT * FROM marketplace')
+
+        marketplace_list = cursor.fetchall()
+
+        for p in marketplace_list:
+            marketplaces.append(Marketplace(p[1], p[2], p[0]))
         
-        with conn.cursor() as cur:
-            cur.execute('select * from markeplace')
-            
-            result = cur.fetchall()
-            return result
+        return marketplaces
     except Exception as e:
         print(e)
 
