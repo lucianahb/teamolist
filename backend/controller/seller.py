@@ -2,6 +2,7 @@
 from backend.dao.BD.seller import create_seller, read_sellers
 from backend.controller.log import write_log
 from backend.models.seller import Seller
+import datetime as datetime
 
 def write_seller(seller:Seller) -> None:
     create_seller(seller)

@@ -29,4 +29,4 @@ def read_logs():
                 lista_log.append(l)
     except Exception as e:
         print(e)
-    return logs
+    return lista_log
