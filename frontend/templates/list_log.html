@@ -6,28 +6,28 @@
 <table>
     <thead>
         <tr>
+            <th>id</th>
             <th>Data</th>
-            <th>Hora</th>
             <th>Tipo</th>
             <th>Operação</th>
         </tr>
     </thead>
     <tbody>
         {%for log in list%}
-            {% if "write" in log[2] %}
+            {% if "write" in log.action %}
                 <tr>
-                    <td class="save_log">{{log[0]}}</td>
-                    <td class="save_log">{{log[1]}}</td>
+                    <td class="save_log">{{log.id}}</td>
+                    <td class="save_log">{{log.datetime}}</td>
                     <td class="save_log">Save</td>
-                    <td class="save_log">{{log[3]}}</td>
+                    <td class="save_log">{{log.action}}</td>
                 </tr>
-            {% elif 'List' in log[2] %}
-            <tr>
-                <td class="list_log">{{log[0]}}</td>
-                <td class="list_log">{{log[1]}}</td>
-                <td class="list_log">List</td>
-                <td class="list_log">{{log[3]}}</td>
-            </tr>
+            {% elif 'List' in log.action %}
+                <tr>
+                    <td class="list_log">{{log.id}}</td>
+                    <td class="list_log">{{log.datetime}}</td>
+                    <td class="list_log">List</td>
+                    <td class="list_log">{{log.action}}</td>
+                </tr>
 
             {% endif %}
         {%endfor%}

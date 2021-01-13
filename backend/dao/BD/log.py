@@ -1,35 +1,17 @@
-import datetime as datetime
 import sys
-
+from backend.models.log import Log
 import psycopg2
 sys.path.append('.')
+from backend.dao.BD.bd_config import generate_connection
 
-root = '../../backend/files/log.txt'
-host = "pgsql08-farm15.uni5.net"
-user = "topskills1"
-password = "olist21"
-database = "topskills1"
-connection_string = f"host={host} dbname={database} user={user} password={password}"
-
-def create_log(function_name: str, operation_type: str):
-    date = datetime.datetime.now()
+def create_log(log: Log):
+    conn = generate_connection()
     
-    try:
-        conn = psycopg2.connect(connection_string)
-        
-        with conn.cursor() as cur:
-            cur.execute(f'''
-            INSERT INTO log (datetime, action) VALUES ('{date}', '{function_name}');
-            ''')
-
-        conn.commit()
-    except Exception as e:
-        print("deu ruim")
-        print(e)
-
-    finally:
-        pass
-        conn.close()
+    with conn.cursor() as cur:
+        cur.execute(f'''
+        INSERT INTO log (datetime, action) VALUES ('{log.datetime}', '{log.action}');
+        ''')
+    conn.close()
 
 
 def read_logs():
@@ -37,11 +19,13 @@ def read_logs():
         conn = psycopg2.connect(connection_string)
         
         with conn.cursor() as cur:
-            cur.execute('select * from log')
-            
+            cur.execute('select datetime, action, id from log')
+            lista_log = []
             result = cur.fetchall()
-            print(result)
-            return result
+            for log in result:
+                l = Log(log[0],log[1],log[2])
+                lista_log.append(l)
+            return lista_log
     except Exception as e:
         print(e)
 
