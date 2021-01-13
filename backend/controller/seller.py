@@ -5,11 +5,13 @@ from backend.models.seller import Seller
 
 def write_seller(seller:Seller) -> None:
     create_seller(seller)
-    operation_type = 1 #1=write and 2=list
-    write_log('writen Seller', operation_type)
+    date = datetime.datetime.now()
+    log = Log(date, 'writen Seller')
+    write_log(log)
 
 def list_sellers() -> list:
     sellers = read_sellers()
-    operation_type = 2 #1=write and 2=list
-    write_log('Listed Seller', operation_type)
+    date = datetime.datetime.now()
+    log = Log(date, 'Listed Sellers')
+    write_log(log)
     return sellers
