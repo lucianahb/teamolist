@@ -1,21 +1,15 @@
 import datetime as datetime
 import sys
+from backend.dao.BD.bd_config import generate_connection
 
 import psycopg2
 sys.path.append('.')
-
-root = '../../backend/files/log.txt'
-host = "pgsql08-farm15.uni5.net"
-user = "topskills1"
-password = "olist21"
-database = "topskills1"
-connection_string = f"host={host} dbname={database} user={user} password={password}"
 
 def create_log(function_name: str, operation_type: str):
     date = datetime.datetime.now()
     
     try:
-        conn = psycopg2.connect(connection_string)
+        conn = generate_connection()
         
         with conn.cursor() as cur:
             cur.execute(f'''
@@ -34,7 +28,7 @@ def create_log(function_name: str, operation_type: str):
 
 def read_logs():
     try:
-        conn = psycopg2.connect(connection_string)
+        conn = generate_connection()
         
         with conn.cursor() as cur:
             cur.execute('select * from log')
