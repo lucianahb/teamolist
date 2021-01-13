@@ -3,28 +3,34 @@
 {% block body %}
 
 <h1>Lista de Produtos</h1>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-        </tr>
-    </thead>
-    <tbody>
-        {%for prod in list%}
-        <tr>
-            <td>{{prod.id}}</td>
-            <td>{{prod.name}}</td>
-            <td>{{prod.description}}</td>
-            <td>{{prod.price}}</td>
-        </tr>
-        {%endfor%}
-    </tbody>
-</table>
+<form>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for prod in list%}
+            <tr>
+                <td><input type="radio" id="{{prod.id}}" name = "product_id" value= {{prod.id}} ></td>
+                <td>{{prod.id}}</td>
+                <td>{{prod.name}}</td>
+                <td>{{prod.description}}</td>
+                <td>{{prod.price}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    <button type="submit" formaction="/update_product">Change</button>
+    <button type="submit" formaction="/delete_product">Delete</button>
+</form>
+<button type="submit"><a href="/">Home</a></button>
 
-<a href="/">Home</a>
 
 
 {% endblock %}
