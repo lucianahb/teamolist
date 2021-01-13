@@ -2,7 +2,7 @@ from backend.dao.BD.bd_config import connection_credentials
 from backend.models.seller import Seller
 import psycopg2
 
-def create_seller(seller: Seller):
+def create_seller(seller: Seller) -> None:
     try:
         with psycopg2.connect(connection_credentials()) as conn:
             cursor = conn.cursor()
@@ -12,7 +12,7 @@ def create_seller(seller: Seller):
     except Exception as e:
         print(e)
 
-def read_sellers():
+def read_sellers() -> list:
     lista_sellers = []
     try:
         with psycopg2.connect(connection_credentials()) as conn:
@@ -26,4 +26,32 @@ def read_sellers():
         print(e)
     return lista_sellers
 
+def list_by_id(id: int) -> Seller:
+    try:
+        with psycopg2.connect(connection_credentials()) as conn:
+            cursor = conn.cursor()
+            cursor.execute(f'SELECT * FROM seller where id = {id}')
+            seller = cursor.fetchone()
+            seller = Seller(seller[1],seller[2],seller[3],seller[0])
+    except Exception as e:
+        print(e)
+    return seller
 
+def update_seller(seller: Seller) -> None:
+    try:
+        with psycopg2.connect(connection_credentials()) as conn:
+            cursor = conn.cursor()
+            cursor.execute(f"UPDATE seller set name = '{seller.name}', phone='{seller.phone}', mail='{seller.email}' where id = '{seller.id}'")
+            conn.commit()
+    except Exception as e:
+        print(e)
+
+def del_seller(id: int) ->None:
+    try:
+        with psycopg2.connect(connection_credentials()) as conn:
+            cursor = conn.cursor()
+            cursor.execute(f"DELETE FROM seller where id = '{id}'")
+            conn.commit()
+    except Exception as e:
+        print(e)
+    
