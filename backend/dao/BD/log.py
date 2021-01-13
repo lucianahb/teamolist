@@ -1,30 +1,32 @@
-import datetime as datetime
 import sys
+from backend.models.log import Log
 from backend.dao.BD.bd_config import connection_credentials
 import psycopg2
 
+sys.path.append('.')
 
-def create_log(function_name: str, operation_type: str):
-    date = datetime.datetime.now()
-    
+
+def create_log(log: Log):
     try:
         with psycopg2.connect(connection_credentials()) as conn:
             cur = conn.cursor()
             cur.execute(f'''
-            INSERT INTO log (datetime, action) VALUES ('{date}', '{function_name}');
+            INSERT INTO log (datetime, action) VALUES ('{log.datetime}', '{log.action}');
             ''')
-            conn.commit()
     except Exception as e:
         print(e)
 
 
 def read_logs():
-    logs = []
+    lista_log = []
     try:
         with psycopg2.connect(connection_credentials()) as conn:
             cur = conn.cursor()
-            cur.execute('select * from log')
-            logs = cur.fetchall()
+            cur.execute('select datetime, action, id from log')
+            result = cur.fetchall()
+            for log in result:
+                l = Log(log[0],log[1],log[2])
+                lista_log.append(l)
     except Exception as e:
         print(e)
     return logs
