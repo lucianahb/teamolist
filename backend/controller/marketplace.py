@@ -7,20 +7,20 @@ import datetime as datetime
 def write_mkplace(marketplace: Marketplace):
     create_mkplace(marketplace)
     date = datetime.datetime.now()
-    log = Log(date, 'writen Marketplace')
+    log = Log(date, 'Create Marketplace')
     write_log(log)
 
 def list_mkplaces():
     marketplaces = read_mkplaces()
     date = datetime.datetime.now()
-    log = Log(date, 'Listed Marketplaces')
+    log = Log(date, 'Read Marketplaces')
     write_log(log)
     return marketplaces
 
 def list_mkplace_by_id(id: int) -> Marketplace:
     marketplace = list_by_id(id)
     date = datetime.datetime.now()
-    log = Log(date, 'Listed Marketplaces by id')
+    log = Log(date, 'Read Marketplaces by id')
     write_log(log)
     return marketplace
 

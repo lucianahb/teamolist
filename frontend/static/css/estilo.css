@@ -62,3 +62,13 @@ table {
     color: #FFFFFF;
     border: 1px #000000 solid;
 }
+.update_log {
+    background-color: #79d114;
+    color: #FFFFFF;
+    border: 1px #000000 solid;
+}
+.delete_log {
+    background-color: #f30404;
+    color: #FFFFFF;
+    border: 1px #000000 solid;
+}

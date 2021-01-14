@@ -3,7 +3,7 @@
 {%block body%}
 <h2> {{titulo}} </h2>
 <form action="/update-seller">
-    <input name="id" value="{{seller.id}}" hidden/>
+    <input name="id" value="{{seller.id}}" hidden readonly/>
     <div class="label">
         <label>Nome</label> 
         <input type="text" name="nome" value="{{seller.name}}"/>

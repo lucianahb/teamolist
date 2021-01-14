@@ -8,20 +8,20 @@ import datetime as datetime
 def write_seller(seller:Seller) -> None:
     create_seller(seller)
     date = datetime.datetime.now()
-    log = Log(date, 'writen Seller')
+    log = Log(date, 'Create Seller')
     write_log(log)
 
 def list_sellers() -> list:
     sellers = read_sellers()
     date = datetime.datetime.now()
-    log = Log(date, 'Listed Sellers')
+    log = Log(date, 'Read Sellers')
     write_log(log)
     return sellers
 
 def list_seller_by_id(id: int) -> Seller:
     seller = list_by_id(id)
     date = datetime.datetime.now()
-    log = Log(date, 'Listed Sellers by id')
+    log = Log(date, 'Read Sellers by id')
     write_log(log)
     return seller
 
