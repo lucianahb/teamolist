@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+
+{%block body%}
+<h2> Alterar Categoria </h2>
+<form action="/update-category">
+    <div class="label">
+        <label>ID: </label> 
+        <input type="text" name="id" value="{{category.id}}" readonly/>
+    </div>
+    <div class="label">
+        <label>Nome: </label> 
+        <input type="text" name="name" value="{{category.name}}"/>
+    </div>
+    <div class="label">
+        <label>Descrição: </label> 
+        <input type="text" name="description" value="{{category.description}}"/>
+    </div>
+    </br></br></br>
+    <input type="submit" value="Salvar Alterações"/>
+</form>
+<button type="submit"><a href='/list-category'> Voltar</a></a></button>
+
+{%endblock%}

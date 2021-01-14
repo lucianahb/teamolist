@@ -3,7 +3,7 @@ from backend.models.product import Product
 import psycopg2
 
 
-def create_product(product:Product):
+def create_product(product:Product) -> None:
     try:
         with psycopg2.connect(connection_credentials()) as conn:
             cursor = conn.cursor()
@@ -13,7 +13,7 @@ def create_product(product:Product):
     except Exception as e:
         print(e)
 
-def read_products():
+def read_products() -> list:
     products = []
     try:
         with psycopg2.connect(connection_credentials()) as conn:
@@ -26,3 +26,36 @@ def read_products():
         print(e)
     return products
         
+    
+
+def get_by_id(id:int) -> Product:
+    product = []
+    try:
+        with psycopg2.connect(connection_credentials()) as conn:
+            cur = conn.cursor()
+            cur.execute(f'select * from product where id = {id}')
+            result = cur.fetchone()
+            product = Product(result[1],result[2],result[3],result[0])
+            
+    except Exception as e:
+        print(e)
+    return product
+
+def u_product(product: Product) -> None:
+    try:
+        with psycopg2.connect(connection_credentials()) as conn:
+            cur = conn.cursor()
+            cur.execute(f'''UPDATE product SET name = '{product.name}', description = '{product.description}', price = '{product.price}' WHERE ID = {product.id};''')
+            conn.commit()
+    except Exception as e:
+        print(e)
+
+def d_product(product: Product) -> None:
+    try:
+        with psycopg2.connect(connection_credentials()) as conn:
+            cur = conn.cursor()
+            cur.execute(f'''
+            DELETE FROM product WHERE ID = {product.id};''')
+            conn.commit()
+    except Exception as e:
+        print(e)
