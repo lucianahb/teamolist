@@ -27,15 +27,16 @@ def read_sellers() -> list:
     return lista_sellers
 
 def list_by_id(id: int) -> Seller:
+    sel = []
     try:
         with psycopg2.connect(connection_credentials()) as conn:
             cursor = conn.cursor()
             cursor.execute(f'SELECT * FROM seller where id = {id}')
             seller = cursor.fetchone()
-            seller = Seller(seller[1],seller[2],seller[3],seller[0])
+            sel = Seller(seller[1],seller[2],seller[3],seller[0])
     except Exception as e:
         print(e)
-    return seller
+    return sel
 
 def update_seller(seller: Seller) -> None:
     try:

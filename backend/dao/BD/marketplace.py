@@ -28,15 +28,16 @@ def read_mkplaces()->list:
     return marketplaces
 
 def list_by_id(id: int) -> Marketplace:
+    mkp = []
     try:
         with psycopg2.connect(connection_credentials()) as conn:
             cursor = conn.cursor()
             cursor.execute(f'SELECT * FROM marketplace where id = {id}')
             marketplace = cursor.fetchone()
-            marketplace = Marketplace(marketplace[1],marketplace[2],marketplace[0])
+            mkp = Marketplace(marketplace[1],marketplace[2],marketplace[0])
     except Exception as e:
         print(e)
-    return marketplace
+    return mkp
 
 def update_marketplace(marketplace: Marketplace) -> None:
     try:
