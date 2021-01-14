@@ -4,8 +4,8 @@ sys.path.append('.')
 from backend.controller.log import write_log, list_logs # pylint: disable=import-error 
 from backend.controller.marketplace import list_mkplaces, write_mkplace, list_mkplace_by_id, update_mkplace, del_mkplace # pylint: disable=import-error 
 from backend.controller.product import list_products, write_product, get_product_by_id, update_product, delete_product # pylint: disable=import-error 
-from backend.controller.seller import list_sellers, write_seller, list_seller_by_id, update_sel, del_sel # pylint: disable=import-error 
-from backend.controller.category import list_categories, write_category, get_category_by_id, update_category, delete_category # pylint: disable=import-error 
+from backend.controller.seller import SellerController # pylint: disable=import-error 
+from backend.controller.category import CategoryController # pylint: disable=import-error 
 from backend.models.product import Product
 from backend.models.marketplace import Marketplace
 from backend.models.category import Category
@@ -65,16 +65,18 @@ def write_sel():
     email = request.args.get('email')
     telefone = request.args.get('telefone')
     seller = Seller(name,telefone,email)
-    write_seller(seller)
+    controller = SellerController()
+    controller.create(seller)
     return redirect('/list_seller')
 
 
 @app.route('/write-category')
 def write_cat():
+    controller = CategoryController()
     name = request.args.get('nome')
     description = request.args.get('descricao')
     category = Category(name,description)
-    write_category(category)
+    controller.create(category)
     return redirect('/list_category')
 
 @app.route('/update-seller')
@@ -84,7 +86,8 @@ def updateseller():
     phone = request.args.get('telefone')
     id = request.args.get('id')
     seller = Seller(name,phone,email,id)
-    update_sel(seller)
+    controller = SellerController()
+    controller.update(seller)
     return redirect('list_seller')
 
 @app.route('/update-marketplace')
@@ -105,7 +108,8 @@ def form_update_mkp():
 @app.route('/update_seller')
 def form_update_seller():
     id = request.args.get('id')
-    seller = list_seller_by_id(id)
+    controller = SellerController()
+    seller = controller.read_by_id(id)
     return render_template('form-update-seller.html', seller= seller)
     
 @app.route('/deletemarketplace')
@@ -117,7 +121,8 @@ def deletemarketplace():
 @app.route('/deleteseller')
 def deleteseller():
     id = request.args.get('id')
-    del_sel(id)
+    controller = SellerController()
+    controller.delete(id)
     return redirect('list_seller')
 
 @app.route('/list_mkp')
@@ -134,13 +139,16 @@ def list_product():
 
 @app.route('/list_seller')
 def list_seller():
-    final_list = list_sellers()
+    controller = SellerController()
+    final_list = controller.read_all()
+    print(final_list)
     return render_template('list_seller.html', list=final_list, write_log=write_log)
 
 
 @app.route('/list_category')
 def list_category():
-    final_list = list_categories()
+    controller = CategoryController()
+    final_list = controller.read_all()
     return render_template('list_category.html', list=final_list, write_log=write_log)
 
 
@@ -152,24 +160,27 @@ def list_log():
 
 @app.route('/update_category')
 def form_updatecategory():
-    category = get_category_by_id(request.args.get('category_id'))
+    controller = CategoryController()
+    category = controller.read_by_id(request.args.get('category_id'))
     return render_template('change-category.html', category = category)
 
 
 @app.route('/update-category')
 def u_category():
+    controller = CategoryController()
     id = request.args.get('id')
     name = request.args.get('name')
     description = request.args.get('description')
     category = Category(name,description, id)
-    update_category(category)
+    controller.update(category)
     return redirect('/list_category')
 
 
 @app.route('/delete_category')
 def d_category():
-    category = get_category_by_id(request.args.get('category_id'))
-    delete_category(category)
+    controller = CategoryController()
+    category = controller.read_by_id(request.args.get('category_id'))
+    controller.delete(category.id)
     return redirect('/list_category')
 
 

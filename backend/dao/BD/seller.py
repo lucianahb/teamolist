@@ -1,58 +1,39 @@
-from backend.dao.BD.bd_config import Connection
 from backend.models.seller import Seller
-import psycopg2
+from .base_dao import BaseDao
 
-def create_seller(seller: Seller) -> None:
-    try:
-        with Connection() as conn:
-            cursor = conn.cursor()
-            query = f"insert into seller (name, phone, mail) values('{seller.name}','{seller.phone}','{seller.email}')"
-            cursor.execute(query)
-            conn.commit()
-    except Exception as e:
-        print(e)
 
-def read_sellers() -> list:
-    lista_sellers = []
-    try:
-       with Connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute('select * from seller')
-            result = cursor.fetchall()
-            for seller in result:
-                sell = Seller(seller[1], seller[2], seller[3],seller[0])
-                lista_sellers.append(sell)
-    except Exception as e:
-        print(e)
-    return lista_sellers
+class SellerDao(BaseDao):
+    def create(self, seller: Seller) -> None:
+        query = f"""INSERT INTO seller (name, phone, mail) 
+                    VALUES ('{seller.name}','{seller.phone}','{seller.email}');
+                    """
+        super().execute(query)
 
-def list_by_id(id: int) -> Seller:
-    sel = []
-    try:
-       with Connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(f'SELECT * FROM seller where id = {id}')
-            seller = cursor.fetchone()
-            sel = Seller(seller[1],seller[2],seller[3],seller[0])
-    except Exception as e:
-        print(e)
-    return sel
+    def read_by_id(self, id:int)-> Seller:
+        query = f"SELECT ID, NAME, PHONE, MAIL FROM seller WHERE ID = {id};"
+        result = super().read(query)[0]
+        seller = Seller(result[1],result[2] ,result[3], result[0])
+        return seller
 
-def update_seller(seller: Seller) -> None:
-    try:
-        with Connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(f"UPDATE seller set name = '{seller.name}', phone='{seller.phone}', mail='{seller.email}' where id = '{seller.id}'")
-            conn.commit()
-    except Exception as e:
-        print(e)
+    def read_all(self)->list:
+        query = f"SELECT ID, NAME, PHONE, MAIL FROM SELLER;"
+        result_list = super().read(query)
+        sellers = []
+        for result in result_list:
+            seller = Seller(result[1],result[2] ,result[3], result[0])
+            sellers.append(seller)
+        return sellers
 
-def del_seller(id: int) ->None:
-    try:
-        with Connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(f"DELETE FROM seller where id = '{id}'")
-            conn.commit()
-    except Exception as e:
-        print(e)
-    
+    def delete(self, id:int)->None:
+        query = f"DELETE FROM SELLER WHERE ID = {id};"
+        super().execute(query)
+
+    def update(self, seller:Seller)->None:
+        query = f"""UPDATE seller 
+                            SET 
+                                NAME = '{seller.name}',
+                                MAIL = '{seller.email}',
+                                PHONE = '{seller.phone}'
+                            WHERE ID = {seller.id};
+                            """
+        super().execute(query)
