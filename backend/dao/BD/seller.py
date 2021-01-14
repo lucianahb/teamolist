@@ -1,10 +1,10 @@
-from backend.dao.BD.bd_config import connection_credentials
+from backend.dao.BD.bd_config import Connection
 from backend.models.seller import Seller
 import psycopg2
 
 def create_seller(seller: Seller) -> None:
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cursor = conn.cursor()
             query = f"insert into seller (name, phone, mail) values('{seller.name}','{seller.phone}','{seller.email}')"
             cursor.execute(query)
@@ -15,7 +15,7 @@ def create_seller(seller: Seller) -> None:
 def read_sellers() -> list:
     lista_sellers = []
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+       with Connection() as conn:
             cursor = conn.cursor()
             cursor.execute('select * from seller')
             result = cursor.fetchall()
@@ -29,7 +29,7 @@ def read_sellers() -> list:
 def list_by_id(id: int) -> Seller:
     sel = []
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+       with Connection() as conn:
             cursor = conn.cursor()
             cursor.execute(f'SELECT * FROM seller where id = {id}')
             seller = cursor.fetchone()
@@ -40,7 +40,7 @@ def list_by_id(id: int) -> Seller:
 
 def update_seller(seller: Seller) -> None:
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cursor = conn.cursor()
             cursor.execute(f"UPDATE seller set name = '{seller.name}', phone='{seller.phone}', mail='{seller.email}' where id = '{seller.id}'")
             conn.commit()
@@ -49,7 +49,7 @@ def update_seller(seller: Seller) -> None:
 
 def del_seller(id: int) ->None:
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cursor = conn.cursor()
             cursor.execute(f"DELETE FROM seller where id = '{id}'")
             conn.commit()

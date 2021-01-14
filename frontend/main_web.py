@@ -72,7 +72,7 @@ def write_sel():
 @app.route('/write-category')
 def write_cat():
     name = request.args.get('nome')
-    description = request.args.get('description')
+    description = request.args.get('descricao')
     category = Category(name,description)
     write_category(category)
     return redirect('/list_category')
@@ -163,14 +163,14 @@ def u_category():
     description = request.args.get('description')
     category = Category(name,description, id)
     update_category(category)
-    return redirect('/list-category')
+    return redirect('/list_category')
 
 
 @app.route('/delete_category')
 def d_category():
     category = get_category_by_id(request.args.get('category_id'))
     delete_category(category)
-    return redirect('/list-category')
+    return redirect('/list_category')
 
 
 @app.route('/update_product')
@@ -187,14 +187,14 @@ def u_product():
     price = request.args.get('price')
     product = Product(name,description, price, id)
     update_product(product)
-    return redirect('/list-product')
+    return redirect('/list_product')
 
 
 @app.route('/delete_product')
 def d_product():
     product = get_product_by_id(request.args.get('product_id'))
     delete_product(product)
-    return redirect('/list-product')
+    return redirect('/list_product')
 
 app.debug = True
 

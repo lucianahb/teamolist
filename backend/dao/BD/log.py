@@ -1,6 +1,6 @@
 import sys
 from backend.models.log import Log
-from backend.dao.BD.bd_config import connection_credentials
+from backend.dao.BD.bd_config import Connection
 import psycopg2
 
 sys.path.append('.')
@@ -8,7 +8,7 @@ sys.path.append('.')
 
 def create_log(log: Log):
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cur = conn.cursor()
             cur.execute(f'''
             INSERT INTO log (datetime, action) VALUES ('{log.datetime}', '{log.action}');
@@ -20,7 +20,7 @@ def create_log(log: Log):
 def read_logs():
     lista_log = []
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cur = conn.cursor()
             cur.execute('select datetime, action, id from log')
             result = cur.fetchall()

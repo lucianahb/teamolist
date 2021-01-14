@@ -1,11 +1,11 @@
-from backend.dao.BD.bd_config import connection_credentials
+from backend.dao.BD.bd_config import Connection
 from backend.models.product import Product
 import psycopg2
 
 
 def create_product(product:Product) -> None:
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cursor = conn.cursor()
             query = f"INSERT INTO product (name, description, price) VALUES ('{product.name}','{product.description}',{product.price});"
             cursor.execute(query)
@@ -16,7 +16,7 @@ def create_product(product:Product) -> None:
 def read_products() -> list:
     products = []
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cursor = conn.cursor()
             cursor.execute('select * from product')
             product_list = cursor.fetchall()
@@ -31,7 +31,7 @@ def read_products() -> list:
 def get_by_id(id:int) -> Product:
     product = []
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cur = conn.cursor()
             cur.execute(f'select * from product where id = {id}')
             result = cur.fetchone()
@@ -43,7 +43,7 @@ def get_by_id(id:int) -> Product:
 
 def u_product(product: Product) -> None:
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cur = conn.cursor()
             cur.execute(f'''UPDATE product SET name = '{product.name}', description = '{product.description}', price = '{product.price}' WHERE ID = {product.id};''')
             conn.commit()
@@ -52,7 +52,7 @@ def u_product(product: Product) -> None:
 
 def d_product(product: Product) -> None:
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cur = conn.cursor()
             cur.execute(f'''
             DELETE FROM product WHERE ID = {product.id};''')

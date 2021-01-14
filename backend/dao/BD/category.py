@@ -1,11 +1,11 @@
 from backend.models.category import Category
-from backend.dao.BD.bd_config import connection_credentials
+from backend.dao.BD.bd_config import Connection
 import psycopg2
 
 
 def create_category(category: Category) -> None:
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cur = conn.cursor()
             cur.execute(f'''
             INSERT INTO category (name, description) VALUES ('{category.name}','{category.description}');''')
@@ -16,7 +16,7 @@ def create_category(category: Category) -> None:
 def read_categories() -> list:
     list_categories = []
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cur = conn.cursor()
             cur.execute('select * from category')
             result = cur.fetchall()
@@ -31,7 +31,7 @@ def read_categories() -> list:
 def get_by_id(id:int) -> Category:
     category = []
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cur = conn.cursor()
             cur.execute(f'select * from category where id = {id}')
             result = cur.fetchone()
@@ -43,7 +43,7 @@ def get_by_id(id:int) -> Category:
 
 def u_category(category: Category) -> None:
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cur = conn.cursor()
             cur.execute(f'''UPDATE category SET name = '{category.name}', description = '{category.description}' WHERE ID = {category.id};''')
             conn.commit()
@@ -52,10 +52,11 @@ def u_category(category: Category) -> None:
 
 def d_category(category: Category) -> None:
     try:
-        with psycopg2.connect(connection_credentials()) as conn:
+        with Connection() as conn:
             cur = conn.cursor()
             cur.execute(f'''
             DELETE FROM category WHERE ID = {category.id};''')
             conn.commit()
     except Exception as e:
         print(e)
+
