@@ -3,26 +3,33 @@
 {% block body %}
 
 <h1>Lista de Categorias</h1>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome da Categoria</th>
-            <th>Descrição da categoria</th>
-        </tr>
-    </thead>
-    <tbody>
-        {%for cat in list%}
-        <tr>
-            <td>{{cat.id}}</td>
-            <td>{{cat.name}}</td>
-            <td>{{cat.description}}</td>
-        </tr>
-        {%endfor%}
-    </tbody>
-</table>
+<form>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Nome da Categoria</th>
+                <th>Descrição da categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for cat in list%}
+            <tr>
+                <td><input type="radio" id="{{cat.id}}" name = "category_id" value= {{cat.id}} ></td>
+                <td>{{cat.id}}</td>
+                <td>{{cat.name}}</td>
+                <td>{{cat.description}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    <button type="submit" formaction="/update_category">Change</button>
+    <button type="submit" formaction="/delete_category">Delete</button>
+</form>
 
-<a href="/">Home</a>
+
+<button type="submit"><a href="/">Home</a></button>
 
 
 {% endblock %}

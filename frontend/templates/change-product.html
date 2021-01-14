@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+
+{%block body%}
+<h2> Alterar Produto </h2>
+<form action="/update-product">
+    <div class="label">
+        <label>ID: </label> 
+        <input type="text" name="id" value="{{product.id}}" readonly/>
+    </div>
+    <div class="label">
+        <label>Nome: </label> 
+        <input type="text" name="name" value="{{product.name}}"/>
+    </div>
+    <div class="label">
+        <label>Descrição: </label> 
+        <input type="text" name="description" value="{{product.description}}"/>
+    </div>
+    <div class="label">
+        <label>Preço: </label> 
+        <input type="text" name="price" value="{{product.price}}"/>
+    </div>
+    </br></br></br>
+    <input type="submit" value="Salvar Alterações"/>
+</form>
+<button type="submit"><a href='/list-product'> Voltar</a></a></button>
+
+{%endblock%}

@@ -1,14 +1,11 @@
 from flask import Flask, render_template, request, redirect
 import sys
 sys.path.append('.')
-
-
-
 from backend.controller.log import write_log, list_logs # pylint: disable=import-error 
 from backend.controller.marketplace import list_mkplaces, write_mkplace, list_mkplace_by_id, update_mkplace, del_mkplace # pylint: disable=import-error 
-from backend.controller.product import list_products, write_product # pylint: disable=import-error 
+from backend.controller.product import list_products, write_product, get_product_by_id, update_product, delete_product # pylint: disable=import-error 
 from backend.controller.seller import list_sellers, write_seller, list_seller_by_id, update_sel, del_sel # pylint: disable=import-error 
-from backend.controller.category import list_categories, write_category # pylint: disable=import-error 
+from backend.controller.category import list_categories, write_category, get_category_by_id, update_category, delete_category # pylint: disable=import-error 
 from backend.models.product import Product
 from backend.models.marketplace import Marketplace
 from backend.models.category import Category
@@ -75,7 +72,7 @@ def write_sel():
 @app.route('/write-category')
 def write_cat():
     name = request.args.get('nome')
-    description = request.args.get('nome')
+    description = request.args.get('description')
     category = Category(name,description)
     write_category(category)
     return redirect('/list_category')
@@ -151,6 +148,53 @@ def list_category():
 def list_log():
     final_list = list_logs()
     return render_template('list_log.html', list=final_list)
+
+
+@app.route('/update_category')
+def form_updatecategory():
+    category = get_category_by_id(request.args.get('category_id'))
+    return render_template('change-category.html', category = category)
+
+
+@app.route('/update-category')
+def u_category():
+    id = request.args.get('id')
+    name = request.args.get('name')
+    description = request.args.get('description')
+    category = Category(name,description, id)
+    update_category(category)
+    return redirect('/list-category')
+
+
+@app.route('/delete_category')
+def d_category():
+    category = get_category_by_id(request.args.get('category_id'))
+    delete_category(category)
+    return redirect('/list-category')
+
+
+@app.route('/update_product')
+def form_updateproduct():
+    product = get_product_by_id(request.args.get('product_id'))
+    return render_template('change-product.html', product = product)
+
+
+@app.route('/update-product')
+def u_product():
+    id = request.args.get('id')
+    name = request.args.get('name')
+    description = request.args.get('description')
+    price = request.args.get('price')
+    product = Product(name,description, price, id)
+    update_product(product)
+    return redirect('/list-product')
+
+
+@app.route('/delete_product')
+def d_product():
+    product = get_product_by_id(request.args.get('product_id'))
+    delete_product(product)
+    return redirect('/list-product')
 
 app.debug = True
 
