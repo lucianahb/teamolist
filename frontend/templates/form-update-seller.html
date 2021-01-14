@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{%block body%}
+<h2> {{titulo}} </h2>
+<form action="/update-seller">
+    <input name="id" value="{{seller.id}}" hidden readonly/>
+    <div class="label">
+        <label>Nome</label> 
+        <input type="text" name="nome" value="{{seller.name}}"/>
+    </div>
+    </br></br>
+    <div class="label">
+        <label for="email">E-mail</label>
+        <input type="email" name="email" id="email" required value="{{seller.email}}"/>
+      </div>
+    </br></br>
+      <div class="label">
+        <label>Telefone</label>
+        <input type="telefone" name="telefone" value="{{seller.phone}}"/>
+      </div>
+    </br></br></br>
+    <input type="submit" value="Salvar"/>
+</form>
+<a href='/'> Voltar</a>
+{%endblock%}

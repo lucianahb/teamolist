@@ -9,6 +9,7 @@
             <th>ID</th>
             <th>Nome</th>
             <th>Descrição</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -17,6 +18,10 @@
             <td>{{mkp.id}}</td>
             <td>{{mkp.name}}</td>
             <td>{{mkp.description}}</td>
+            <td>
+                <a href="/update_marketplace?id={{mkp.id}}">Update</a>
+                <a href="/deletemarketplace?id={{mkp.id}}">Delete</a>
+            </td>
         </tr>
         {%endfor%}
     </tbody>

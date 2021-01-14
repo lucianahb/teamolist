@@ -28,9 +28,27 @@
                     <td class="list_log">List</td>
                     <td class="list_log">{{log.action}}</td>
                 </tr>
+           
 
-            {% endif %}
-        {%endfor%}
+            {% elif 'Update' in log.action %}
+            <tr>
+                <td class="update_log">{{log.id}}</td>
+                <td class="update_log">{{log.datetime}}</td>
+                <td class="update_log">Update</td>
+                <td class="update_log">{{log.action}}</td>
+            </tr>
+
+        {% elif 'Del' in log.action %}
+        <tr>
+            <td class="delete_log">{{log.id}}</td>
+            <td class="delete_log">{{log.datetime}}</td>
+            <td class="delete_log">delete</td>
+            <td class="delete_log">{{log.action}}</td>
+        </tr>
+
+    {% endif %}
+
+    {%endfor%}
     </tbody>
 </table>
 
