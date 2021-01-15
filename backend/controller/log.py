@@ -1,12 +1,12 @@
-import datetime as datetime
-import sys
 from backend.models.log import Log
-sys.path.append('.')
-from backend.dao.BD.log import create_log, read_logs # pylint: disable=import-error 
+from backend.dao.BD.log import LogDao
 
 def write_log(log: Log):
-    create_log(log)
+    l = LogDao()
+    l.create(log)
    
 def list_logs():
-    list_log = read_logs()
+    l = LogDao()
+    list_log = l.read_all()
+    print(list_log)
     return list_log
