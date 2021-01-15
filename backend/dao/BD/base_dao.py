@@ -1,4 +1,4 @@
-from .bd_config import Connection
+from backend.dao.BD.bd_config import Connection
 
 
 class BaseDao:

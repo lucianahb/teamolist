@@ -3,7 +3,7 @@ class BaseController:
         self.__dao = dao
 
     def create(self, model: object)->None:
-        return self.__dao.create(model)
+        self.__dao.create(model)
 
     def read_by_id(self,id:int)-> object:
         return self.__dao.read_by_id(id)
@@ -16,3 +16,4 @@ class BaseController:
 
     def update(self, model: object)->None:
         self.__dao.update(model) 
+
