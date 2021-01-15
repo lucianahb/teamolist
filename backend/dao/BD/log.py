@@ -7,7 +7,7 @@ class LogDao(BaseDao):
         super().execute(query)
 
     def read_all(self)->list:
-        query = 'SELECT datetime, action, id FROM log;'
+        query = 'SELECT datetime, action, id FROM log order by id desc;'
         result_list = super().read(query)
         logs = []
         for result in result_list:
