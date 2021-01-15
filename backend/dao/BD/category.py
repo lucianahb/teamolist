@@ -1,62 +1,36 @@
 from backend.models.category import Category
-from backend.dao.BD.bd_config import Connection
-import psycopg2
+from .base_dao import BaseDao
 
 
-def create_category(category: Category) -> None:
-    try:
-        with Connection() as conn:
-            cur = conn.cursor()
-            cur.execute(f'''
-            INSERT INTO category (name, description) VALUES ('{category.name}','{category.description}');''')
-            conn.commit()
-    except Exception as e:
-        print(e)
+class CategoryDao(BaseDao):
+    def create(self, category: Category) -> None:
+        query = f"INSERT INTO category (name, description) VALUES ('{category.name}','{category.description}');"
+        super().execute(query)
 
-def read_categories() -> list:
-    list_categories = []
-    try:
-        with Connection() as conn:
-            cur = conn.cursor()
-            cur.execute('select * from category')
-            result = cur.fetchall()
-            
-            for category in result:
-                cat = Category(category[1],category[2],category[0])
-                list_categories.append(cat)
-    except Exception as e:
-        print(e)
-    return list_categories
+    def read_by_id(self, id:int)-> Category:
+        query = f"SELECT ID, NAME, DESCRIPTION FROM CATEGORY WHERE ID = {id};"
+        result = super().read(query)[0]
+        category = Category(result[1],result[2] ,result[0])
+        return category
+        
+    def read_all(self)->list:
+        query = f"SELECT ID, NAME, DESCRIPTION FROM CATEGORY;"
+        result_list = super().read(query)
+        categories = []
+        for result in result_list:
+            category = Category(result[1],result[2] ,result[0])
+            categories.append(category)
+        return categories
 
-def get_by_id(id:int) -> Category:
-    category = []
-    try:
-        with Connection() as conn:
-            cur = conn.cursor()
-            cur.execute(f'select * from category where id = {id}')
-            result = cur.fetchone()
-            category = Category(result[1],result[2],result[0])
-            
-    except Exception as e:
-        print(e)
-    return category
+    def delete(self, id:int)->None:
+        query = f"DELETE FROM CATEGORY WHERE ID = {id};"
+        super().execute(query)
 
-def u_category(category: Category) -> None:
-    try:
-        with Connection() as conn:
-            cur = conn.cursor()
-            cur.execute(f'''UPDATE category SET name = '{category.name}', description = '{category.description}' WHERE ID = {category.id};''')
-            conn.commit()
-    except Exception as e:
-        print(e)
-
-def d_category(category: Category) -> None:
-    try:
-        with Connection() as conn:
-            cur = conn.cursor()
-            cur.execute(f'''
-            DELETE FROM category WHERE ID = {category.id};''')
-            conn.commit()
-    except Exception as e:
-        print(e)
-
+    def update(self, category:Category)->None:
+        query = f"""UPDATE CATEGORY 
+                            SET 
+                                NAME = '{category.name}',
+                                DESCRIPTION = '{category.description}' 
+                            WHERE ID = {category.id};
+                            """
+        super().execute(query)

@@ -15,4 +15,5 @@ class BaseController:
         self.__dao.delete(id)
 
     def update(self, model: object)->None:
-        self.__dao.update(model)
+        self.__dao.update(model) 
+

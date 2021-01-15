@@ -1,5 +1,6 @@
 from backend.dao.BD.bd_config import Connection
 
+
 class BaseDao:
     def execute(self, query:str)-> None:
         with Connection() as connection:
