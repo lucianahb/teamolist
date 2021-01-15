@@ -14,14 +14,14 @@
     </thead>
     <tbody>
         {%for log in list%}
-            {% if "write" in log.action %}
+            {% if "Create" in log.action %}
                 <tr>
                     <td class="save_log">{{log.id}}</td>
                     <td class="save_log">{{log.datetime}}</td>
                     <td class="save_log">Save</td>
                     <td class="save_log">{{log.action}}</td>
                 </tr>
-            {% elif 'List' in log.action %}
+            {% elif 'Read' in log.action %}
                 <tr>
                     <td class="list_log">{{log.id}}</td>
                     <td class="list_log">{{log.datetime}}</td>
