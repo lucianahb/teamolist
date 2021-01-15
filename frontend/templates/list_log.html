@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        {%for log in list%}
+        {% for log in list %}
             {% if "Create" in log.action %}
                 <tr>
                     <td class="save_log">{{log.id}}</td>
