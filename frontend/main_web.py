@@ -68,7 +68,7 @@ def write_sel():
 @app.route('/write-category')
 def write_cat(): 
     name = request.args.get('nome')
-    description = request.args.get('description')
+    description = request.args.get('descricao')
     category = Category(name,description)
     controller = CategoryController()
     controller.create(category)
@@ -137,7 +137,7 @@ def list_product():
 
 @app.route('/list_seller')
 def list_seller():
-    data = datetime.datetime.now()
+    controller = SellerController()
     final_list = controller.read_all()
     print(final_list)
     return render_template('list_seller.html', list=final_list)
