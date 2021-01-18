@@ -5,25 +5,25 @@ class Marketplace:
         self.__description = description
 
     @property
-    def id(self):
+    def id(self) -> int:
         return self.__id
     
     @property
-    def name(self):
+    def name(self) -> str:
         return self.__name
     
     @property
-    def description(self):
+    def description(self) -> str:
         return self.__description
 
     @id.setter
-    def id(self, id):
+    def id(self, id: int):
         self.__id = id
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
         self.__name = name
 
     @description.setter
-    def description(self, description):
+    def description(self, description: str):
         self.__description = description
